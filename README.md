@@ -129,7 +129,13 @@ checks, and evaluation patch validation directly.
 Behavioral cases live under [`evals/adversarial-review/`](evals/adversarial-review/). They are maintainer evaluations,
 not product testing skills or unit tests, and never contact external providers automatically.
 
-## 📄 License
+## Built with AI
+
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757.svg?style=for-the-badge&logo=claude&logoColor=white)](https://claude.com/claude-code)
+[![Reviewed by Codex](https://img.shields.io/badge/Reviewed%20by-Codex-10A37F.svg?style=for-the-badge&logo=openaigym&logoColor=white)](https://openai.com/codex)
+[![Reviewed by CodeRabbit](https://img.shields.io/badge/Reviewed%20by-CodeRabbit-FF570A.svg?style=for-the-badge&logo=coderabbit&logoColor=white)](https://www.coderabbit.ai)
+
+## License
 
 [![License](https://img.shields.io/badge/License-BSD--3--Clause-brightgreen.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=555555)](LICENSE)
 
