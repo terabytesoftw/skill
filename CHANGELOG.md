@@ -6,4 +6,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## 0.1.0 - Under development
 
-- feat: initial development release.
+- feat: add the initial personal skill catalog, portable review workflow, and evaluated usage examples.

@@ -1,4 +1,20 @@
-# Personal agent skills
+<!-- markdownlint-disable MD041 -->
+<h1 align="center">Personal Agent Skills</h1>
+<!-- markdownlint-enable MD041 -->
+
+<p align="center">
+    <a href="https://github.com/terabytesoftw/skill/actions/workflows/quality.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/terabytesoftw/skill/quality.yml?style=for-the-badge&label=Quality&logo=github" alt="Quality">
+    </a>
+    <a href="https://github.com/terabytesoftw/skill/actions/workflows/security.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/terabytesoftw/skill/security.yml?style=for-the-badge&label=Security&logo=github" alt="Security">
+    </a>
+</p>
+
+<p align="center">
+    <strong>Portable personal agent skills for coding agents</strong><br>
+    <em>Evidence-based review, planning, documentation, and research workflows</em>
+</p>
 
 Portable agent skills maintained by Terabytesoftw. Each skill is self-contained under [`skills/`](skills/) and follows
 the [Agent Skills](https://agentskills.io/specification) directory format.
@@ -90,6 +106,13 @@ The catalog contains seven skills:
 
 [`CATALOG.md`](CATALOG.md) records the inventory, inclusion decisions, exclusions, and provenance boundaries.
 
+## Usage examples
+
+[Copyable prompts and illustrative outputs](docs/examples.md) provide two practical scenarios for every skill. Each
+example states its minimum context, expected artifact, verification criteria, and limits. The separate
+[cross-client evaluation](docs/evaluation-results.md) records actual Claude Code, Codex, and GitHub Copilot runs without
+turning observed output into the expected answer.
+
 ### Testing skills
 
 This catalog intentionally does not duplicate skills for creating, migrating, configuring, or running PHP tests.
@@ -106,7 +129,9 @@ checks, and evaluation patch validation directly.
 Behavioral cases live under [`evals/adversarial-review/`](evals/adversarial-review/). They are maintainer evaluations,
 not product testing skills or unit tests, and never contact external providers automatically.
 
-## License
+## 📄 License
+
+[![License](https://img.shields.io/badge/License-BSD--3--Clause-brightgreen.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=555555)](LICENSE)
 
 Original repository work is available under the [BSD 3-Clause License](LICENSE). The adversarial-review skill retains
 the notices and license texts required by the review material identified in its
