@@ -1,6 +1,6 @@
 # Local editor and generated runtime state.
 .vscode/**
-runtime/**
+**/__pycache__/**
 
 # Dependencies.
 node_modules/**
@@ -8,11 +8,9 @@ vendor/**
 
 # Dependency lockfiles.
 composer.lock
-foxy.lock
 
 # License texts ship verbatim.
 **/LICENSE*
 
-# Private maintainer files and coverage reports.
-code_coverage/**
+# Private maintainer files.
 internal/**

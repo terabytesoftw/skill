@@ -1,0 +1,12 @@
+diff --git a/metrics.py b/metrics.py
+new file mode 100644
+index 0000000..3c4370e
+--- /dev/null
++++ b/metrics.py
+@@ -0,0 +1,6 @@
++def average(total: float, count: int) -> float | None:
++    """Return no average when count is not positive."""
++    if count <= 0:
++        return None
++
++    return total / count
