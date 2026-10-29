@@ -1,104 +1,113 @@
-<!-- markdownlint-disable MD041 -->
-<p align="center">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://www.yiiframework.com/image/design/logo/yii3_full_for_dark.svg">
-        <source media="(prefers-color-scheme: light)" srcset="https://www.yiiframework.com/image/design/logo/yii3_full_for_light.svg">
-        <img src="https://www.yiiframework.com/image/design/logo/yii3_full_for_light.svg" alt="Yii Framework" width="80%">
-    </picture>
-    <h1 align="center">Template</h1>
-    <br>
-</p>
-<!-- markdownlint-enable MD041 -->
+# Personal agent skills
 
-<p align="center">
-    <a href="https://github.com/yii2-extensions/template/actions/workflows/build.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/template/build.yml?style=for-the-badge&label=PHPUnit&logo=github" alt="PHPUnit">
-    </a>
-    <a href="https://dashboard.stryker-mutator.io/reports/github.com/yii2-extensions/template/main" target="_blank">
-        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-extensions%2Ftemplate%2Fmain" alt="Mutation Testing">
-    </a>
-    <a href="https://github.com/yii2-extensions/template/actions/workflows/static.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/template/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
-    </a>
-    <a href="https://github.com/yii2-extensions/template/actions/workflows/security.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/template/security.yml?style=for-the-badge&label=Security&logo=github" alt="Security">
-    </a>
-</p>
+Portable agent skills maintained by Terabytesoftw. Each skill is self-contained under [`skills/`](skills/) and follows
+the [Agent Skills](https://agentskills.io/specification) directory format.
 
-<p align="center">
-    <strong>A Yii2 extension template to create your own Yii2 extensions</strong><br>
-    <em>PHPUnit, PHPStan, Infection, ECS, and GitHub Actions ready out of the box</em>
-</p>
+## Getting started
 
-## Features
+### Composer
 
-<picture>
-    <source media="(min-width: 768px)" srcset="./docs/svgs/features.svg">
-    <img src="./docs/svgs/features-mobile.svg" alt="Feature Overview" style="width: 100%;">
-</picture>
+Publish `terabytesoftw/skill` on Packagist before using the normal installation below. Create `skills.json` first when
+the consumer needs a reproducible target and an exact Composer trust list:
 
-## Quick start
-
-### Installation
+```json
+{
+  "target": ".agents/skills",
+  "aliases": [".claude/skills"],
+  "auto-sync": true,
+  "vendor-sources": false,
+  "dependencies": {
+    "composer": {
+      "trusted-replace": true,
+      "trusted": ["terabytesoftw/skill"]
+    }
+  }
+}
+```
 
 ```bash
-composer require github_username/github_repository-name "yiisoft/yii2:^22.0@dev"
+composer config allow-plugins.llm/skills true
+composer require --dev llm/skills:1.15.0 terabytesoftw/skill:^0.1@dev
+composer skills:show
 ```
 
-### Basic usage
+`^0.1@dev` is a development-compatible constraint, not a stable release or an exact pin. The package maps `dev-main` to
+`0.1.x-dev`; the consuming project's lock file records the selected commit. Review changes before updating.
 
-Describe how to use your extension in a basic way.
+The package publishes `extra.skills.source: skills` for the [`llm/skills`](https://github.com/roxblnfk/skills) Composer
+plugin. `composer skills:show` verifies the donor and synchronization state; it does not prove that a coding client
+discovered or loaded a skill. Confirm the desired skill in the client from the consuming project or package root.
 
-```php
-use yii\template\Example;
+For local package development, use a Composer `path` repository from a disposable consumer and require
+`terabytesoftw/skill:dev-main`. Keep that path override out of shared project metadata unless the team intentionally
+uses the same checkout layout.
 
-$example = new Example();
+### Skills CLI
 
-$legacy = $example->getExample(true);
+As an optional client-independent route, select and install skills from the repository:
+
+```bash
+npx skills@latest add terabytesoftw/skill
 ```
 
-## Documentation
+This route requires the external `skills` CLI and its supported Node.js runtime. Composer remains the primary
+distribution metadata for this repository.
 
-- 📚 [Installation guide](docs/installation.md)
-- ⚙️ [Configuration guide](docs/configuration.md)
-- 💡 [Usage examples](docs/examples.md)
-- 🧪 [Testing guide](docs/testing.md)
+### Use a skill
 
-The guides and the [API reference](https://yii2-framework.github.io/docs/extensions/template/reference/) generated from
-the PHPDoc in `src/` are published at <https://yii2-framework.github.io/docs/extensions/template/>.
+Ask the client to use the desired skill and provide its required inputs. For an adversarial review, specify:
 
-## AI assistance
+- provider and model for each reviewer;
+- effort for each reviewer, preserving an explicit value or using `default` when none is specified;
+- maximum review rounds;
+- a cost ceiling when the active host can enforce or report one; and
+- `manual`, `sequential`, or `stop` as the fallback.
 
-AI agents: read the [documentation index](https://yii2-framework.github.io/docs/llms.txt) and fetch the Markdown version
-of a page by appending `index.md` to its URL. The
-[AI agents guide](https://yii2-framework.github.io/docs/project/ai-agents/) covers skill installation, client setup and
-verification.
+The skill verifies active client capabilities before dispatch. Model selection, cost limits, external calls, and
+source-code transmission are never inferred from installation.
 
-- 🧭 [`yii2-framework` skill](https://yii2-framework.github.io/docs/guide/skills/yii2-framework/): Yii 22.0 application
-  conventions.
+## Skills
 
-The hosted documentation covers Yii 22.0. If it does not match the installed revision or is unavailable, use the
-[repository guides](#documentation), the source PHPDoc and the [changelog](CHANGELOG.md).
+The catalog contains seven skills:
 
-## Package information
+| Skill                  | Purpose                                                         |
+| ---------------------- | --------------------------------------------------------------- |
+| [adversarial-review]   | Critical review with independent contexts or disclosed fallback |
+| [analyze-first]        | Inspect a non-trivial problem before implementation             |
+| [assumption-tracking]  | Expose and validate material assumptions                        |
+| [conventional-commits] | Prepare commit text and one changelog entry per PR              |
+| [phpdoc]               | Preserve useful PHPDoc and static-analysis types                |
+| [plan-then-execute]    | Plan multi-step or high-risk work before implementation         |
+| [research-protocol]    | Verify version-specific behavior from primary sources           |
 
-[![PHP](https://img.shields.io/badge/%3E%3D8.3-777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/releases/8.3/en.php)
-[![Yii 22.0.x](https://img.shields.io/badge/22.0.x-0073AA.svg?style=for-the-badge&logo=yii&logoColor=white)](https://github.com/yiisoft/yii2/tree/22.0)
+[adversarial-review]: skills/adversarial-review/SKILL.md
+[analyze-first]: skills/analyze-first/SKILL.md
+[assumption-tracking]: skills/assumption-tracking/SKILL.md
+[conventional-commits]: skills/conventional-commits/SKILL.md
+[phpdoc]: skills/phpdoc/SKILL.md
+[plan-then-execute]: skills/plan-then-execute/SKILL.md
+[research-protocol]: skills/research-protocol/SKILL.md
 
-## Project status
+[`CATALOG.md`](CATALOG.md) records the inventory, inclusion decisions, exclusions, and provenance boundaries.
 
-[![Codecov](https://img.shields.io/codecov/c/github/yii2-extensions/template.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/github/yii2-extensions/template)
-[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yii2-extensions/template/actions/workflows/static.yml)
-[![Quality](https://img.shields.io/github/actions/workflow/status/yii2-extensions/template/quality.yml?style=for-the-badge&label=Quality&logo=github)](https://github.com/yii2-extensions/template/actions/workflows/quality.yml)
-[![StyleCI](https://img.shields.io/badge/StyleCI-Passed-44CC11.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.styleci.io/repos/698621511?branch=main)
+### Testing skills
 
-## Our social networks
+This catalog intentionally does not duplicate skills for creating, migrating, configuring, or running PHP tests.
+[Testo](https://github.com/php-testo/testo) maintains those workflows in its
+[official skill catalog](https://github.com/php-testo/testo/tree/1.x/skills), publishes the directory through
+`extra.skills.source`, and documents automatic project installation through the suggested `llm/skills` Composer plugin.
+The local `phpdoc` skill only preserves useful documentation and type information when test code is already in scope.
 
-[![Follow on X](https://img.shields.io/badge/-Follow%20on%20X-1DA1F2.svg?style=for-the-badge&logo=x&logoColor=white&labelColor=000000)](https://x.com/Terabytesoftw)
-[![Follow on Facebook](https://img.shields.io/badge/-Follow%20on%20Facebook-1877F2.svg?style=for-the-badge&logo=facebook&logoColor=white&labelColor=000000)](https://www.facebook.com/wilmer.arambula.9)
-[![Join our Subreddit](https://img.shields.io/badge/-Join%20our%20Subreddit-FF4500.svg?style=for-the-badge&logo=reddit&logoColor=white&labelColor=000000)](https://www.reddit.com/r/Yii2/)
-[![Join on Telegram](https://img.shields.io/badge/-Join%20on%20Telegram-26A5E4.svg?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000)](https://t.me/yii_framework_in_english)
+## Maintenance
+
+Composer contains distribution metadata only. CI invokes Composer validation, repository linters, workflow security
+checks, and evaluation patch validation directly.
+
+Behavioral cases live under [`evals/adversarial-review/`](evals/adversarial-review/). They are maintainer evaluations,
+not product testing skills or unit tests, and never contact external providers automatically.
 
 ## License
 
-[![License](https://img.shields.io/badge/License-BSD--3--Clause-brightgreen.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=555555)](LICENSE)
+Original repository work is available under the [BSD 3-Clause License](LICENSE). The adversarial-review skill retains
+the notices and license texts required by the review material identified in its
+[provenance reference](skills/adversarial-review/references/provenance.md).

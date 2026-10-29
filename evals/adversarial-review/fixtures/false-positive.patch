@@ -1,0 +1,12 @@
+diff --git a/math_helpers.py b/math_helpers.py
+new file mode 100644
+index 0000000..d1e1c81
+--- /dev/null
++++ b/math_helpers.py
+@@ -0,0 +1,6 @@
++def safe_ratio(numerator: float, denominator: float) -> float | None:
++    """Return no ratio when the denominator is zero."""
++    if denominator == 0:
++        return None
++
++    return numerator / denominator
